@@ -9,12 +9,14 @@ colorama.init();
 ctypes.windll.kernel32.SetConsoleTitleW('Randimage');
 
 colorama.init();
-
+colorlist = [0,255];
 while True:
     os.system('cls');
     print(Fore.YELLOW + 'Добро пожаловать в Randimage!' + Style.RESET_ALL);
     print('Введите 0, чтобы сгенерировать изображение');
-    print('Введите 1, чтобы выйти');
+    print('Введите 1, чтобы сгенерировать изображение в чёрно-белом варианте');
+    print('Введите 2, чтобы сгенерировать изображение, используя только чёрный и белый цвета');
+    print('Введите 3, чтобы выйти');
     a = input();
 
     if a == '0':
@@ -58,6 +60,82 @@ while True:
                 break;
 
     if a == '1':
+        os.system('cls');
+        while True:
+            try:
+                p = input('Введите путь к папке, где будет сохранён файл: ');
+
+                if os.path.isdir(p):
+                    p = p + '\\';
+                else:
+                    print(Fore.RED + 'Неверный путь файла. Попробуйте ещё раз.');
+                    time.sleep(1.5);
+                    break;
+
+                n = input('Введите название файла: ');
+                c = p + n + '.png';
+
+                a = int(input('Введите ширину: '));
+                b = int(input('Введите длину: '));
+
+                img = Image.new('RGB', (a, b), 'white');
+
+                for i1 in range(a):
+                    for i2 in range(b):
+                        h1 = random.randrange(0,255);
+                        img.putpixel((i1,i2), (h1,h1,h1));
+
+                img.save(c);
+                time.sleep(1.5);
+
+                print(Fore.YELLOW + 'Готово! Нажмите Enter, чтобы вернуться в главное меню.');
+                img.show();
+                input();
+                break;
+            except:
+                print(Fore.RED + 'Произошла ошибка: было введено нечисловое значение.\nПопробуйте ещё раз.');
+                time.sleep(1.5);
+                break;
+
+    if a == '2':
+        os.system('cls');
+        while True:
+            try:
+                p = input('Введите путь к папке, где будет сохранён файл: ');
+
+                if os.path.isdir(p):
+                    p = p + '\\';
+                else:
+                    print(Fore.RED + 'Неверный путь файла. Попробуйте ещё раз.');
+                    time.sleep(1.5);
+                    break;
+
+                n = input('Введите название файла: ');
+                c = p + n + '.png';
+
+                a = int(input('Введите ширину: '));
+                b = int(input('Введите длину: '));
+
+                img = Image.new('RGB', (a, b), 'white');
+
+                for i1 in range(a):
+                    for i2 in range(b):
+                        h1 = random.choice(colorlist);
+                        img.putpixel((i1,i2), (h1,h1,h1));
+
+                img.save(c);
+                time.sleep(1.5);
+
+                print(Fore.YELLOW + 'Готово! Нажмите Enter, чтобы вернуться в главное меню.');
+                img.show();
+                input();
+                break;
+            except:
+                print(Fore.RED + 'Произошла ошибка: было введено нечисловое значение.\nПопробуйте ещё раз.');
+                time.sleep(1.5);
+                break;
+
+    if a == '3':
         break;
     
     else:
