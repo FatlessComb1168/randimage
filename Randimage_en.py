@@ -1,11 +1,12 @@
 from PIL import Image;
-import random;
-import os;
+from random import randint, choice;
+from os import system;
 import colorama;
 from tkinter.filedialog import asksaveasfilename;
 from tkinter import Tk;
 from colorama import Fore, Style;
 import ctypes;
+
 colorama.init();
 ctypes.windll.kernel32.SetConsoleTitleW('Randimage');
 
@@ -13,8 +14,14 @@ Tk().withdraw();
 colorama.init();
 colorlist = [0,255];
 
+def random_color():
+    global h1, h2, h3;
+    h1 = randint(0,255);
+    h2 = randint(0,255);
+    h3 = randint(0,255);
+
 while True:
-    os.system('cls');
+    system('cls');
     print(Fore.YELLOW + 'Welcome to Randimage!' + Style.RESET_ALL);
     print('Enter "0" to generate a new image');
     print('Enter "1" to generate a new image using only shades of grey');
@@ -25,7 +32,7 @@ while True:
     user_input = input();
 
     if user_input == '0' or '1' or '2' or '3' or '4':
-        os.system('cls');
+        system('cls');
         while True:
             try:
                 print('Enter a path to a folder where file will be saved: ');
@@ -39,36 +46,30 @@ while True:
                 if user_input == '0':
                     for i1 in range(a):
                         for i2 in range(b):
-                            h1 = random.randrange(0,255);
-                            h2 = random.randrange(0,255);
-                            h3 = random.randrange(0,255);
+                            random_color();
                             img.putpixel((i1,i2), (h1,h2,h3));
                 
                 if user_input == '1':
                     for i1 in range(a):
                         for i2 in range(b):
-                            h1 = random.randrange(0,255);
+                            h1 = randint(0,255);
                             img.putpixel((i1,i2), (h1,h1,h1));
                 
                 if user_input == '2':
                     for i1 in range(a):
                         for i2 in range(b):
-                            h1 = random.choice(colorlist);
+                            h1 = choice(colorlist);
                             img.putpixel((i1,i2), (h1,h1,h1));
                 
                 if user_input == '3':
                     for i2 in range(a):
-                        h1 = random.randrange(0,255);
-                        h2 = random.randrange(0,255);
-                        h3 = random.randrange(0,255);
+                        random_color();
                         for i1 in range(b):
                             img.putpixel((i1,i2), (h1,h2,h3));
 
                 if user_input == '4':
                     for i1 in range(a):
-                        h1 = random.randrange(0,255);
-                        h2 = random.randrange(0,255);
-                        h3 = random.randrange(0,255);
+                        random_color();
                         for i2 in range(b):
                             img.putpixel((i1,i2), (h1,h2,h3));
 
@@ -88,4 +89,4 @@ while True:
         break;
     
     else:
-        os.system('cls');
+        system('cls');
