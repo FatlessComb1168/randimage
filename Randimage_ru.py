@@ -4,7 +4,7 @@ import os;
 import colorama;
 from tkinter.filedialog import asksaveasfilename;
 from tkinter import Tk;
-from colorama import Fore, Back, Style;
+from colorama import Fore, Style;
 import ctypes;
 colorama.init();
 ctypes.windll.kernel32.SetConsoleTitleW('Randimage');
@@ -30,9 +30,6 @@ while True:
             try:
                 print('Введите путь к папке, где будет сохранён файл: ');
                 p = asksaveasfilename(title='Сохранить файл',defaultextension='.png');
-
-                n = input('Введите название файла: ');
-                c = p + n + '.png';
 
                 a = int(input('Введите ширину: '));
                 b = int(input('Введите длину: '));
@@ -75,7 +72,7 @@ while True:
                         for i2 in range(b):
                             img.putpixel((i1,i2), (h1,h2,h3));
 
-                img.save(c);
+                img.save(p);
                 print(Fore.YELLOW + 'Готово! Нажмите Enter, чтобы вернуться в главное меню.');
                 img.show();
                 input();

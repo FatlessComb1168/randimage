@@ -3,11 +3,13 @@ import random;
 import os;
 import colorama;
 from tkinter.filedialog import asksaveasfilename;
-from colorama import Fore, Back, Style;
+from tkinter import Tk;
+from colorama import Fore, Style;
 import ctypes;
 colorama.init();
 ctypes.windll.kernel32.SetConsoleTitleW('Randimage');
 
+Tk().withdraw();
 colorama.init();
 colorlist = [0,255];
 
@@ -17,9 +19,9 @@ while True:
     print('Enter "0" to generate a new image');
     print('Enter "1" to generate a new image using only shades of grey');
     print('Enter "2" to generate a new image using only black and white colors');
-    print('Enter 4 to generate a new horizontal lines image');
-    print('Enter 4 to generate a new vertical lines image');
-    print('Enter 5 to exit');
+    print('Enter "3" to generate a new horizontal lines image');
+    print('Enter "4" to generate a new vertical lines image');
+    print('Enter "5" to exit');
     user_input = input();
 
     if user_input == '0' or '1' or '2' or '3' or '4':
@@ -28,9 +30,6 @@ while True:
             try:
                 print('Enter a path to a folder where file will be saved: ');
                 p = asksaveasfilename(title='Save file',defaultextension='.png');
-
-                n = input('Enter the name of file: ');
-                c = p + n + '.png';
 
                 a = int(input('Enter width: '));
                 b = int(input('Enter height: '));
@@ -73,7 +72,7 @@ while True:
                         for i2 in range(b):
                             img.putpixel((i1,i2), (h1,h2,h3));
 
-                img.save(c);
+                img.save(p);
                 print(Fore.YELLOW + 'Done! Click "Enter" to continue.');
                 img.show();
                 input();
