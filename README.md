@@ -1,4 +1,4 @@
-# randimage
+# Randimage
 A tool for generating random images.
 
 Download source code (English): https://github.com/FatlessComb1168/randimage/raw/main/Randimage_en.py
